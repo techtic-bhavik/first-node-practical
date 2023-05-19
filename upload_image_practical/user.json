@@ -1,1 +1,1 @@
-[{ id: 1, name: "Bhavik", age: 25, gender: "Male" },{ id: 2, name: "Vivek", age: 23, gender: "Male" },{ id: 3, name: "Hiren", age: 31, gender: "Male" },{ id: 4, name: "Alpesh", age: 28, gender: "Male" }]
+[{ "id": 1, "name": "Bhavik", "age": 25, "gender": "Male" },{ "id": 2, "name": "Vivek", "age": 23, "gender": "Male" },{ "id": 3, "name": "Hiren", "age": 31, "gender": "Male" },{ "id": 4, "name": "Alpesh", "age": 28, "gender": "Male" }]
