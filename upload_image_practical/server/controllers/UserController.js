@@ -1,6 +1,6 @@
 const Util = require("../Utils");
 const util = new Util();
-
+var fs = require("fs");
 const userData = [
   { id: 1, name: "Bhavik", age: 25, gender: "Male" },
   { id: 2, name: "Vivek", age: 23, gender: "Male" },
@@ -8,10 +8,36 @@ const userData = [
   { id: 4, name: "Alpesh", age: 28, gender: "Male" },
 ];
 
+async function userSearch(value) {
+  if (value) {
+    return userData.filter((item) => {
+      return value
+        .toLowerCase()
+        .split(" ")
+        .every((v) => item.name.toLowerCase().includes(v));
+    });
+  } else {
+    return userData;
+  }
+}
+
 class UserController {
   static async userList(req, res) {
     try {
-      util.setSuccess(200, "Get Users Data!", userData);
+      const searchData = await userSearch(req.query.search);
+      fs.writeFile(
+        "user.json",
+        JSON.stringify(userData),
+        "utf8",
+        function (err) {
+          if (err) throw err;
+          console.log("Data added in file");
+        }
+      );
+      
+      searchData.length <= 0
+        ? util.setSuccess(200, "User Not found")
+        : util.setSuccess(200, "User get successfully", searchData);
       return util.send(res);
     } catch {
       util.setError(400, error);
